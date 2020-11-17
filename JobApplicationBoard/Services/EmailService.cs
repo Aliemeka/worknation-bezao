@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿
 
 namespace JobApplicationBoard.Services
 {
@@ -9,9 +6,21 @@ namespace JobApplicationBoard.Services
     public class EmailService
     {
 
-        public string feedback { get; set; }
-        public string recieverEmail { get; set; }
-        public string recieverName { get; set; } //Name of the email reciever
+        //
+        // Summary:
+        //     Gets or sets an feedback type
+        //     Feedback can be "New Entry", "Recieved", "Accepted"
+        public string Feedback { get; set; }
+        //
+        // Summary:
+        //     Gets or sets the email of the reciever
+        //     who should receive responses to based on the feedback.
+        public string RecieverEmail { get; set; }
+        //
+        // Summary:
+        //     Gets or sets the name of the reciever
+        //     based on feedback response
+        public string RecieverName { get; set; }
 
 
         //Set the message acccording to the feedback. If there is an applicant id it also appends that to the message
@@ -35,12 +44,14 @@ namespace JobApplicationBoard.Services
             }
         }
 
+
         //Inititates the SendGrid service to send email via the api
         public void SendEmail()
         {
-            string message = SetEmailMessage(feedback);
+            string message = SetEmailMessage(Feedback);
             var mailSender = new SendGridService();
-            mailSender.SendMessage(message, recieverEmail, recieverName).Wait();
+            mailSender.SendMessage(message, RecieverEmail, RecieverName).Wait();
         }
     }
 }
+
