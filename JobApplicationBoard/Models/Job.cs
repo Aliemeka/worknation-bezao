@@ -14,9 +14,6 @@ namespace JobApplicationBoard.Models
         [Display(Name ="Job Title")]
         public string Title { get; set; }
 
-        [Required]
-        public IEnumerable<string> RequiredSkills { get; set; }
-
         [Required, MinLength(50, ErrorMessage ="Description must contain at least 50 characters")]
         public string Description { get; set; }
 
@@ -24,22 +21,9 @@ namespace JobApplicationBoard.Models
         public DateTime TimeUploaded { get; set; }
 
         [Required]
-        [ForeignKey("JobCategoryId")]
-        public JobCategory JobCategory { get; set; }
+        [MinLength(6, ErrorMessage = "Job Category must be at least 6 characters long")]
+        public string JobCategory { get; set; }
 
-
-    }
-
-    public class JobCategory
-    {
-        [Key]
-        public int JobCategoryId { get; set; }
-
-        [Required, MinLength(6, ErrorMessage = "Category name as to be at list 6 characters long!")]
-        [Display(Name = "Job Category")]
-        public string CategoryName { get; set; }
-
-        public ICollection<Job> Jobs { get; set; }
 
     }
 }

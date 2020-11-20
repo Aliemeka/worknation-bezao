@@ -29,6 +29,14 @@ namespace JobApplicationBoard.Controllers
             return View();
         }
 
+
+        [Route("/all-jobs")]
+        public IActionResult Jobs()
+        {
+            return View();
+        }
+
+        [Route("/about")]
         public IActionResult About()
         {
             return View();
