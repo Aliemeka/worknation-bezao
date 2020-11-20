@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JobApplicationBoard.Models
 {
-    public class Applicant : IdentityUser
+    public class Applicant
     {
         [Key]
         public int ApplicantId { get; set; }
@@ -28,6 +29,10 @@ namespace JobApplicationBoard.Models
         public string EmailAddress { get; set; }
 
         [Required]
+        [Display(Name ="Level of Education")]
         public string LevelofEduction { get; set; }
+
+        [ForeignKey("JobId")]
+        public Job AppliedJob { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using JobApplicationBoard.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using JobApplicationBoard.Repositories;
 
 namespace JobApplicationBoard
 {
@@ -31,7 +32,8 @@ namespace JobApplicationBoard
                 options.UseSqlServer(
                     Configuration.GetConnectionString("AuthenticationDB")));
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            // AddDbContextPool adds pooling which makes it more efficent
+            services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -39,6 +41,10 @@ namespace JobApplicationBoard
 
             services.AddControllersWithViews();
 
+            //Scoped contexts
+            services.AddScoped<IJobRepo, MockJobsRepo>(); // Use JobRepo for db and MockJobsRepo for dummy data
+
+            // Adds support for razor pages and allows compilation while app is running
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 

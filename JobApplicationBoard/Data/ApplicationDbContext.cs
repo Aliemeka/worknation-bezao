@@ -15,5 +15,6 @@ namespace JobApplicationBoard.Data
         }
 
         public DbSet<Job> Jobs { get; set; }
+        //public DbSet<Applicant> Applicants { get; set; }
     }
 }

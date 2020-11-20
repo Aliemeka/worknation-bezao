@@ -6,23 +6,38 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using JobApplicationBoard.Models;
+using JobApplicationBoard.Repositories;
 
 namespace JobApplicationBoard.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IJobRepo _jobRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IJobRepo jobRepo)
         {
             _logger = logger;
+            _jobRepo = jobRepo;
         }
 
 
-        public IActionResult Index()
+        public ViewResult Index()
         {
+            var model = _jobRepo.GetJobs();
+            ViewBag.Jobs = model;
             return View();
         }
+
+
+        [Route("/all-jobs/{jobId:int}")]
+        public IActionResult JobDetails(int jobId)
+        {
+            var model = _jobRepo.GetJob(jobId);
+            ViewBag.Job = model;
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {

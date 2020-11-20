@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = ViewBag.Job.Title;
+}
+
+
+<section class="py-5 text-center jumbotron bg-primary w-100">
+    <h1 class="text-white">Join WorkNation</h1>
+    <hr class="border-light w-50" />
+    <a class="text-white" asp-action="Index" asp-controller="Home">Go back to Home page</a>
+</section>
+
+<section class="py-4 container bg-light">
+    <div class="banner-content col-lg-10 mx-auto">
+        <h2 class="banner-heading mb-2 text-primary">
+            @ViewBag.Job.Title
+        </h2>
+        <hr />
+        <div class="d-flex justify-content-between mb-4">
+            <h6><span class="text-primary">Category:</span> @ViewBag.Job.JobCategory</h6>
+            <h6><span class="text-primary">Time uploaded:</span> @ViewBag.Job.TimeUploaded</h6>
+        </div>
+        <p class="banner-text mb-2">
+            Details:<br/>
+            @ViewBag.Job.Description
+        </p>
+        <button class="btn btn-sm btn-primary mt-2">Apply Here</button>
+    </div>
+</section>
