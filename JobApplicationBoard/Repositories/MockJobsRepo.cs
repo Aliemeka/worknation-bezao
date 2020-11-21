@@ -16,11 +16,11 @@ namespace JobApplicationBoard.Repositories
         {
             _jobList = new List<Job>()
             {
-                new Job() { JobId= 1, Title="Django Backend Engineer", Description=description, JobCategory="Engineering", TimeUploaded = new DateTime()},
-                new Job() { JobId= 2, Title="React.js Developer", Description=description, JobCategory="Engineering", TimeUploaded = new DateTime()},
-                new Job() { JobId= 3, Title="Content Writer", Description=description, JobCategory="Product", TimeUploaded = new DateTime()},
-                new Job() { JobId= 4, Title="UI/UX Designer", Description=description, JobCategory="Design", TimeUploaded = new DateTime()},
-                new Job() { JobId= 5, Title="Product Manager", Description=description, JobCategory="Product", TimeUploaded = new DateTime()},
+                new Job() { JobId= 1, Title="Django Backend Engineer", Description=description, JobCategory=JobCategory.Engineering, TimeUploaded = new DateTime()},
+                new Job() { JobId= 2, Title="React.js Developer", Description=description, JobCategory=JobCategory.Engineering, TimeUploaded = new DateTime()},
+                new Job() { JobId= 3, Title="Content Writer", Description=description, JobCategory=JobCategory.Marketing, TimeUploaded = new DateTime()},
+                new Job() { JobId= 4, Title="UI/UX Designer", Description=description, JobCategory=JobCategory.Design, TimeUploaded = new DateTime()},
+                new Job() { JobId= 5, Title="Product Manager", Description=description, JobCategory=JobCategory.Product, TimeUploaded = new DateTime()},
             };
         }
         public Job AddJob(Job job)

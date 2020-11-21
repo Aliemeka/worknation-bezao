@@ -27,7 +27,14 @@ namespace JobApplicationBoard.Controllers
         }
 
 
+        [Route("/admin/all-applicants")]
         public IActionResult ViewApplicants()
+        {
+            return View();
+        }
+
+
+        public IActionResult CreateJob()
         {
             return View();
         }

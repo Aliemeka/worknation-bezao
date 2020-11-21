@@ -48,7 +48,7 @@
                 <tr>
                     <th scope="row">@job.JobId</th>
                     <td><a href="all-jobs/@job.JobId">@job.Title</a></td>
-                    <td>@job.JobCategory</td>
+                    <td>@job.JobCategory.ToString()</td>
                     <td>@job.TimeUploaded.ToString("MM/dd/yyyy")</td>
                 </tr>
             }

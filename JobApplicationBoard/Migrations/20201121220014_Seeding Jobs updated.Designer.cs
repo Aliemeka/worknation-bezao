@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobApplicationBoard.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201121201236_Seeding Jobs")]
-    partial class SeedingJobs
+    [Migration("20201121220014_Seeding Jobs updated")]
+    partial class SeedingJobsupdated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,9 +91,8 @@ namespace JobApplicationBoard.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("JobCategory")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("JobCategory")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("TimeUploaded")
                         .HasColumnType("datetime2");
@@ -115,8 +114,8 @@ namespace JobApplicationBoard.Migrations
                                         software, and services. Should have at least 3 years experience in Python, Django and REST APIs\
                                         Talk to us if you are interested in\
                                         a fast-paced environment and if you are passionate about using technology to solve exciting problems.",
-                            JobCategory = "Engineering",
-                            TimeUploaded = new DateTime(2020, 11, 21, 21, 12, 35, 702, DateTimeKind.Local).AddTicks(3401),
+                            JobCategory = 0,
+                            TimeUploaded = new DateTime(2020, 11, 21, 23, 0, 13, 747, DateTimeKind.Local).AddTicks(7905),
                             Title = "Django Backend Developer"
                         },
                         new
@@ -126,8 +125,8 @@ namespace JobApplicationBoard.Migrations
 team with a lofty vision of building the next-generation wealth management platform for Africans. 
 This requires us to cater to the teeming population of Android mobile app users across the continent. 
 We're looking for a Software engineer(Android focused) to help us achieve this goal.",
-                            JobCategory = "Engineering",
-                            TimeUploaded = new DateTime(2020, 11, 21, 21, 12, 35, 703, DateTimeKind.Local).AddTicks(5341),
+                            JobCategory = 0,
+                            TimeUploaded = new DateTime(2020, 11, 21, 23, 0, 13, 749, DateTimeKind.Local).AddTicks(2780),
                             Title = "Andriod Mobile Developer"
                         },
                         new
@@ -137,8 +136,8 @@ We're looking for a Software engineer(Android focused) to help us achieve this g
 You will be responsible for analysing everyday financial activities and keep a tab on the financial health of Cowrywise.
 You will lead the development of financial reports, budget and strategies to guide executives in making sound business decisions in the short and long term.
 This role requires an experienced finance professional who is able to combine strategy with execution flawlessly.",
-                            JobCategory = "Finance",
-                            TimeUploaded = new DateTime(2020, 11, 21, 21, 12, 35, 703, DateTimeKind.Local).AddTicks(5378),
+                            JobCategory = 1,
+                            TimeUploaded = new DateTime(2020, 11, 21, 23, 0, 13, 749, DateTimeKind.Local).AddTicks(2821),
                             Title = "Finance Manager"
                         });
                 });
