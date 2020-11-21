@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using JobApplicationBoard.Repositories;
+using JobApplicationBoard.Services;
 
 namespace JobApplicationBoard
 {
@@ -42,9 +43,12 @@ namespace JobApplicationBoard
             services.AddControllersWithViews();
 
             //Scoped contexts
-            services.AddScoped<IJobRepo, MockJobsRepo>(); // Use JobRepo for db and MockJobsRepo for dummy data
+            services.AddScoped<IApplicantRepo, ApplicantRepo>();
+            services.AddScoped<IJobRepo, JobRepo>(); // Use JobRepo for db and MockJobsRepo for dummy data
+            services.AddSingleton<IEmailService, EmailService>();
 
             // Adds support for razor pages and allows compilation while app is running
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 

@@ -3,7 +3,7 @@
 namespace JobApplicationBoard.Services
 {
 
-    public class EmailService
+    public class EmailService : IEmailService
     {
 
         //

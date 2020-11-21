@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JobApplicationBoard.Data;
 using JobApplicationBoard.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobApplicationBoard.Repositories
 {
@@ -15,39 +16,68 @@ namespace JobApplicationBoard.Repositories
         {
             this.context = context;
         }
+
+        //Accepts Applicant application
         public Applicant AcceptApplicant(int Id)
         {
-            throw new NotImplementedException();
+            Applicant applicant = context.Applicants.Find(Id);
+            applicant.CurrentStatus = "Accepted";
+
+            var acceptedApplicant = context.Applicants.Attach(applicant);
+            acceptedApplicant.State = EntityState.Modified;
+            return applicant;
         }
 
-        public Applicant AlertApplicant(int Id)
-        {
-            throw new NotImplementedException();
-        }
-
+        // Executes when user enrolls
         public Applicant EnrolApplicant(Applicant applicant)
+        {
+            context.Applicants.Add(applicant);
+            return applicant;
+        }
+
+        public IEnumerable<Applicant> GetAcceptedApplicants()
         {
             throw new NotImplementedException();
         }
 
         public Applicant GetApplicant(int Id)
         {
-            throw new NotImplementedException();
+            return context.Applicants.Find(Id);
         }
 
         public IEnumerable<Applicant> GetApplicants()
+        {
+            return context.Applicants;
+        }
+
+        public string GetApplicationStatus(int Id)
+        {
+            Applicant applicant = context.Applicants.Find(Id);
+            return applicant.CurrentStatus;
+        }
+
+        public IEnumerable<Applicant> GetRejectedApplicants()
         {
             throw new NotImplementedException();
         }
 
         public Applicant RejectApplicant(int Id)
         {
-            throw new NotImplementedException();
+            Applicant applicant = context.Applicants.Find(Id);
+            applicant.CurrentStatus = "Rejected";
+
+            var rejectedApplicant = context.Applicants.Attach(applicant);
+            rejectedApplicant.State = EntityState.Modified;
+
+            return applicant;
         }
 
+        // Executes anytime user updates their application
         public Applicant UpdateApplication(Applicant applicantUpdates)
         {
-            throw new NotImplementedException();
+            var updatedApplicant = context.Applicants.Attach(applicantUpdates);
+            updatedApplicant.State = EntityState.Modified;
+            return applicantUpdates;
         }
     }
 }
