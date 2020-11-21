@@ -16,5 +16,10 @@ namespace JobApplicationBoard.Data
 
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Applicant> Applicants { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.SeedJobs();
+        }
     }
 }

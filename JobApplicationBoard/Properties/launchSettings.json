@@ -14,6 +14,7 @@
       "environmentVariables": {
         "SENDGRID_KEY": "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",
         "SENDGRID_API_KEY": "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",
+        "TEMPLATE_ID": "d-b766d34f870e4c6eb145de10b9725db7",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },

@@ -7,7 +7,9 @@ namespace JobApplicationBoard.Services
 {
     public interface IEmailService
     {
-        void SendEmail();
+        Task SendEmail(string feedback, string recieverEmail, string recieverName);
+
+        Task SendConfirmation(string message, string recieverEmail, string recieverName);
 
     }
 }

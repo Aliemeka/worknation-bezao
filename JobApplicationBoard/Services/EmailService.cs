@@ -1,26 +1,12 @@
 ﻿
 
+using System.Threading.Tasks;
+
 namespace JobApplicationBoard.Services
 {
 
     public class EmailService : IEmailService
     {
-
-        //
-        // Summary:
-        //     Gets or sets an feedback type
-        //     Feedback can be "New Entry", "Recieved", "Accepted"
-        public string Feedback { get; set; }
-        //
-        // Summary:
-        //     Gets or sets the email of the reciever
-        //     who should receive responses to based on the feedback.
-        public string RecieverEmail { get; set; }
-        //
-        // Summary:
-        //     Gets or sets the name of the reciever
-        //     based on feedback response
-        public string RecieverName { get; set; }
 
 
         //Set the message acccording to the feedback. If there is an applicant id it also appends that to the message
@@ -46,11 +32,18 @@ namespace JobApplicationBoard.Services
 
 
         //Inititates the SendGrid service to send email via the api
-        public void SendEmail()
+        public Task SendEmail(string feedback, string recieverEmail, string recieverName)
         {
-            string message = SetEmailMessage(Feedback);
+            string message = SetEmailMessage(feedback);
             var mailSender = new SendGridService();
-            mailSender.SendMessage(message, RecieverEmail, RecieverName).Wait();
+            return mailSender.SendMessage(message, recieverEmail, recieverName);
+        }
+
+        //Confirmation email sender
+        public Task SendConfirmation(string message, string recieverEmail, string recieverName)
+        {
+            var mailSender = new SendGridService();
+            return mailSender.SendMessage(message, recieverEmail, recieverName);
         }
     }
 }
