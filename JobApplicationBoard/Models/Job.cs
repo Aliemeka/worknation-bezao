@@ -22,7 +22,7 @@ namespace JobApplicationBoard.Models
 
         [Required]
         [MinLength(6, ErrorMessage = "Job Category must be at least 6 characters long")]
-        public JobCategory JobCategory { get; set; }
+        public String JobCategory { get; set; }
 
 
     }

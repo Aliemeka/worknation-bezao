@@ -17,6 +17,7 @@ namespace JobApplicationBoard.Repositories
         }
         public Job AddJob(Job job)
         {
+            
             context.Jobs.Add(job);
             context.SaveChanges();
             return job;

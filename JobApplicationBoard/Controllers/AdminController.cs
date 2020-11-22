@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JobApplicationBoard.Models;
 using JobApplicationBoard.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -33,10 +34,20 @@ namespace JobApplicationBoard.Controllers
             return View();
         }
 
-
+        [HttpGet]
+        [Route("/admin/add-job")]
         public IActionResult CreateJob()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        [Route("/admin/add-job")]
+        public IActionResult CreateJob(Job job)
+        {
+            Job newJob = _jobRepo.AddJob(job);
+            return RedirectToAction("all-jobs/" + newJob.JobId);
         }
 
         

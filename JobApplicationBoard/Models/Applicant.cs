@@ -10,6 +10,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JobApplicationBoard.Models
 {
+    public enum Status
+    {
+        Pending,
+        Accepted,
+        Rejected
+    }
+
     public class Applicant
     {
         [Key]
@@ -45,13 +52,9 @@ namespace JobApplicationBoard.Models
         [Required(ErrorMessage ="Please upload your resume")]
         public string ResumePath { get; set; }
 
-        [DefaultValue("Pending")]
+        [DefaultValue(Status.Pending)]
         [Display(Name = "Status")]
-        public string CurrentStatus { get; set; } = "Pending";
-
-        [ForeignKey("Id")]
-        [Required]
-        public IdentityUser User { get; set; }
+        public Status CurrentStatus { get; set; } = Status.Pending;
 
         [ForeignKey("JobId")]
         public Job AppliedJob { get; set; }

@@ -26,8 +26,8 @@ namespace JobApplicationBoard.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CurrentStatus")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CurrentStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
@@ -37,10 +37,6 @@ namespace JobApplicationBoard.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(25)")
                         .HasMaxLength(25);
-
-                    b.Property<string>("Id")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("JobId")
                         .HasColumnType("int");
@@ -71,8 +67,6 @@ namespace JobApplicationBoard.Migrations
 
                     b.HasKey("ApplicantId");
 
-                    b.HasIndex("Id");
-
                     b.HasIndex("JobId");
 
                     b.ToTable("Applicants");
@@ -89,8 +83,9 @@ namespace JobApplicationBoard.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JobCategory")
-                        .HasColumnType("int");
+                    b.Property<string>("JobCategory")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("TimeUploaded")
                         .HasColumnType("datetime2");
@@ -112,8 +107,8 @@ namespace JobApplicationBoard.Migrations
                                         software, and services. Should have at least 3 years experience in Python, Django and REST APIs\
                                         Talk to us if you are interested in\
                                         a fast-paced environment and if you are passionate about using technology to solve exciting problems.",
-                            JobCategory = 0,
-                            TimeUploaded = new DateTime(2020, 11, 21, 23, 0, 13, 747, DateTimeKind.Local).AddTicks(7905),
+                            JobCategory = "Engineering",
+                            TimeUploaded = new DateTime(2020, 11, 22, 6, 8, 42, 260, DateTimeKind.Local).AddTicks(4384),
                             Title = "Django Backend Developer"
                         },
                         new
@@ -123,8 +118,8 @@ namespace JobApplicationBoard.Migrations
 team with a lofty vision of building the next-generation wealth management platform for Africans. 
 This requires us to cater to the teeming population of Android mobile app users across the continent. 
 We're looking for a Software engineer(Android focused) to help us achieve this goal.",
-                            JobCategory = 0,
-                            TimeUploaded = new DateTime(2020, 11, 21, 23, 0, 13, 749, DateTimeKind.Local).AddTicks(2780),
+                            JobCategory = "Engineering",
+                            TimeUploaded = new DateTime(2020, 11, 22, 6, 8, 42, 261, DateTimeKind.Local).AddTicks(4626),
                             Title = "Andriod Mobile Developer"
                         },
                         new
@@ -134,72 +129,14 @@ We're looking for a Software engineer(Android focused) to help us achieve this g
 You will be responsible for analysing everyday financial activities and keep a tab on the financial health of Cowrywise.
 You will lead the development of financial reports, budget and strategies to guide executives in making sound business decisions in the short and long term.
 This role requires an experienced finance professional who is able to combine strategy with execution flawlessly.",
-                            JobCategory = 1,
-                            TimeUploaded = new DateTime(2020, 11, 21, 23, 0, 13, 749, DateTimeKind.Local).AddTicks(2821),
+                            JobCategory = "Finance",
+                            TimeUploaded = new DateTime(2020, 11, 22, 6, 8, 42, 261, DateTimeKind.Local).AddTicks(4657),
                             Title = "Finance Manager"
                         });
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityUser");
-                });
-
             modelBuilder.Entity("JobApplicationBoard.Models.Applicant", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("JobApplicationBoard.Models.Job", "AppliedJob")
                         .WithMany()
                         .HasForeignKey("JobId");

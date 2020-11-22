@@ -21,7 +21,7 @@ namespace JobApplicationBoard.Repositories
         public Applicant AcceptApplicant(int Id)
         {
             Applicant applicant = context.Applicants.Find(Id);
-            applicant.CurrentStatus = "Accepted";
+            applicant.CurrentStatus = Status.Accepted;
 
             var acceptedApplicant = context.Applicants.Attach(applicant);
             acceptedApplicant.State = EntityState.Modified;
@@ -53,7 +53,7 @@ namespace JobApplicationBoard.Repositories
         public string GetApplicationStatus(int Id)
         {
             Applicant applicant = context.Applicants.Find(Id);
-            return applicant.CurrentStatus;
+            return applicant.CurrentStatus.ToString();
         }
 
         public IEnumerable<Applicant> GetRejectedApplicants()
@@ -64,7 +64,7 @@ namespace JobApplicationBoard.Repositories
         public Applicant RejectApplicant(int Id)
         {
             Applicant applicant = context.Applicants.Find(Id);
-            applicant.CurrentStatus = "Rejected";
+            applicant.CurrentStatus = Status.Rejected;
 
             var rejectedApplicant = context.Applicants.Attach(applicant);
             rejectedApplicant.State = EntityState.Modified;
