@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = "/Views/Shared/_Admin.cshtml";
+    Job job = ViewBag.Job;
+    ViewData["Title"] = $"{job.Title} Details";
+}
+
+
+
+<section class="py-4 container bg-light">
+    
+    <div class="banner-content col-lg-10 mx-auto">
+        <header>
+            <h2 class="text-primary">@job.Title</h2>
+            <hr />
+        </header>
+        <div class="d-flex justify-content-between mb-4">
+            <h6><span class="text-primary">Category:</span> @job.JobCategory</h6>
+            <h6><span class="text-primary">Time uploaded:</span> @job.TimeUploaded.ToString("MM/dd/yyyy")</h6>
+        </div>
+        <p class="banner-text mb-2">
+            Details:<br />
+            @job.Description
+        </p>
+        <a class="mt-3 d-block" asp-action="AllJobs" asp-controller="Admin">Go back to jobs</a>
+    </div>
+</section>

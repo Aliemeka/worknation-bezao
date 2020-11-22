@@ -49,9 +49,26 @@ namespace JobApplicationBoard.Controllers
         public IActionResult CreateJob(Job job)
         {
             Job newJob = _jobRepo.AddJob(job);
-            return RedirectToAction("all-jobs/" + newJob.JobId);
+            return RedirectToAction("AllJobs");
         }
 
-        
+
+        [Route("/admin/all-jobs")]
+        public IActionResult AllJobs()
+        {
+            var jobList = _jobRepo.GetJobs();
+            ViewBag.Jobs = jobList;
+            return View(jobList);
+        }
+
+        [Route("/admin/all-jobs/{jobId:int}")]
+        public IActionResult JobDetails(int jobId)
+        {
+            var model = _jobRepo.GetJob(jobId);
+            ViewBag.Job = model;
+            return View();
+        }
+
+
     }
 }

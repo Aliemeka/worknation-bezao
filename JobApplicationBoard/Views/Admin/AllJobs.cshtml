@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = "/Views/Shared/_Admin.cshtml";
+    ViewData["Title"] = "Careers at WorkNation";
+    var jobs = ViewBag.Jobs;
+}
+
+
+<section class="jobs-list">
+    <table class="job-table table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Job Role</th>
+                <th scope="col">Job category</th>
+                <th scope="col">Deadline</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Job job in jobs)
+            {
+                <tr>
+                    <th scope="row">@job.JobId</th>
+                    <td><a href="all-jobs/@job.JobId">@job.Title</a></td>
+                    <td>@job.JobCategory.ToString()</td>
+                    <td>@job.TimeUploaded.ToString("MM/dd/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</section>
