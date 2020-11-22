@@ -55,7 +55,6 @@ namespace JobApplicationBoard
 
             // Adds support for razor pages and allows compilation while app is running
             services.AddRazorPages().AddRazorRuntimeCompilation();
-            services.AddRazorPages().AddRazorRuntimeCompilation();
 
             services.AddMvc();
         }
