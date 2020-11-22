@@ -16,6 +16,7 @@ using JobApplicationBoard.Repositories;
 using JobApplicationBoard.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using JobApplicationBoard.Models;
 
 namespace JobApplicationBoard
 {
@@ -42,7 +43,7 @@ namespace JobApplicationBoard
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             // .AddEntityFrameworkStores<AccountDbContext>();
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
              .AddEntityFrameworkStores<AccountDbContext>();
 
             services.AddControllersWithViews();

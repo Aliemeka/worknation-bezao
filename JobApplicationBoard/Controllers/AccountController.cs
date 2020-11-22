@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JobApplicationBoard.Models;
 using JobApplicationBoard.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,11 @@ namespace JobApplicationBoard.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> userManager;
-        private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<User> userManager;
+        private readonly SignInManager<User> signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager, 
-                                    SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<User> userManager, 
+                                    SignInManager<User> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -72,7 +73,7 @@ namespace JobApplicationBoard.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName= model.Email, Email = model.Email};
+                var user = new User { UserName= model.Email, Email = model.Email};
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
