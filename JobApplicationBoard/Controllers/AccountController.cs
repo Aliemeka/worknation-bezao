@@ -11,11 +11,11 @@ namespace JobApplicationBoard.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> userManager;
-        private readonly SignInManager<User> signInManager;
+        private readonly UserManager<AppUser> userManager;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public AccountController(UserManager<User> userManager, 
-                                    SignInManager<User> signInManager)
+        public AccountController(UserManager<AppUser> userManager, 
+                                    SignInManager<AppUser> signInManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -31,15 +31,6 @@ namespace JobApplicationBoard.Controllers
         {
             return View();
         }
-
-
-        [HttpGet]
-        [Route("/account/register")]
-        public IActionResult Register()
-        {
-            return View();
-        }
-
 
         [HttpPost]
         [Route("/account/login")]
@@ -61,19 +52,30 @@ namespace JobApplicationBoard.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                
-                 ModelState.AddModelError(string.Empty, "Sorry! You entered a wrong email or password");
+
+                ModelState.AddModelError(string.Empty, "Sorry! You entered a wrong email or password");
             }
             return View(model);
         }
 
+
+
+        [HttpGet]
+        [Route("/account/register")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+        
         [HttpPost]
         [Route("/account/register")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName= model.Email, Email = model.Email};
+                var user = new AppUser { UserName= model.Email, Email = model.Email};
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
