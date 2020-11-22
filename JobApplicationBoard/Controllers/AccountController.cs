@@ -42,7 +42,7 @@ namespace JobApplicationBoard.Controllers
 
         [HttpPost]
         [Route("/account/login")]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -50,6 +50,13 @@ namespace JobApplicationBoard.Controllers
 
                 if (result.Succeeded)
                 {
+                    //If there is a redirect string in the urlpath it will redirect to the return url
+                    if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+
+                    // Redirects to home page
                     return RedirectToAction("Index", "Home");
                 }
 
