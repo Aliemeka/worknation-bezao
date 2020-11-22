@@ -37,8 +37,11 @@ namespace JobApplicationBoard
             services.AddDbContextPool<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<AccountDbContext>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            // .AddEntityFrameworkStores<AccountDbContext>();
+
+            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+             .AddEntityFrameworkStores<AccountDbContext>();
 
             services.AddControllersWithViews();
 
@@ -53,6 +56,8 @@ namespace JobApplicationBoard
             // Adds support for razor pages and allows compilation while app is running
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

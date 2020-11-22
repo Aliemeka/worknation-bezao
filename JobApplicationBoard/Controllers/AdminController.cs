@@ -20,20 +20,21 @@ namespace JobApplicationBoard.Controllers
             _applicant = applicant;
         }
 
-        
+        [Authorize]
         [Route("/admin")]
         public IActionResult Index()
         {
             return View();
         }
 
-
+        [Authorize]
         [Route("/admin/all-applicants")]
         public IActionResult ViewApplicants()
         {
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         [Route("/admin/add-job")]
         public IActionResult CreateJob()
@@ -42,6 +43,7 @@ namespace JobApplicationBoard.Controllers
         }
 
 
+        [Authorize]
         [HttpPost]
         [Route("/admin/add-job")]
         public IActionResult CreateJob(Job job)
