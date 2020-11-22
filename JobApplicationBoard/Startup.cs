@@ -81,10 +81,9 @@ namespace JobApplicationBoard
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
-            
 
             app.UseEndpoints(endpoints =>
             {
