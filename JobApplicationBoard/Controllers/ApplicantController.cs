@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JobApplicationBoard.Controllers
 {
+    [Authorize]
     public class ApplicantController : Controller
     {
         private readonly IJobRepo _jobRepo;
@@ -21,12 +22,11 @@ namespace JobApplicationBoard.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         [Route("/apply/{jobId:int}")]
         public IActionResult Apply(int jobId)
         {
             Job job = _jobRepo.GetJob(jobId);
-            ViewData["job"] = job;
+            ViewBag.Job = job;
             return View();
         }
     }
