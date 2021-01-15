@@ -30,15 +30,6 @@ namespace JobApplicationBoard.Controllers
         }
 
 
-        [Route("/all-jobs/{jobId:int}")]
-        public IActionResult JobDetails(int jobId)
-        {
-            var model = _jobRepo.GetJob(jobId);
-            ViewBag.Job = model;
-            return View();
-        }
-
-
         public IActionResult Privacy()
         {
             return View();

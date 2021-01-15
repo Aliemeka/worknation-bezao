@@ -23,5 +23,13 @@ namespace JobApplicationBoard.Controllers
             ViewBag.Jobs = model;
             return View();
         }
+
+        [Route("/all-jobs/{jobId:int}")]
+        public IActionResult JobDetails(int jobId)
+        {
+            var model = _jobRepo.GetJob(jobId);
+            ViewBag.Job = model;
+            return View();
+        }
     }
 }
