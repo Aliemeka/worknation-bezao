@@ -17,7 +17,7 @@ namespace JobApplicationBoard.Repositories
         }
         public Job AddJob(Job job)
         {
-            
+
             context.Jobs.Add(job);
             context.SaveChanges();
             return job;
@@ -27,7 +27,7 @@ namespace JobApplicationBoard.Repositories
         {
             Job job = context.Jobs.Find(Id);
 
-            if(job != null)
+            if (job != null)
             {
                 context.Jobs.Remove(job);
                 context.SaveChanges();
@@ -41,6 +41,11 @@ namespace JobApplicationBoard.Repositories
             Job job = context.Jobs.Find(Id);
 
             return job;
+        }
+
+        public IEnumerable<Job> GetJobsByCategory(string JobCategory)
+        {
+            return context.Jobs.Where(c => c.JobCategory == JobCategory);
         }
 
         public IEnumerable<Job> GetJobs()

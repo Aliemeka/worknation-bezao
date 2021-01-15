@@ -1,5 +1,6 @@
 ﻿@{ 
     ViewData["Title"] = "All jobs";
+    var jobs = ViewBag.Jobs;
 }
 
 <section class="py-5 text-center jumbotron bg-primary w-100">
@@ -19,24 +20,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Front-end web developer</td>
-                <td>Engineering</td>
-                <td>24/11/2020</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>UI/UX designer</td>
-                <td>Design</td>
-                <td>24/11/2020</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Content developer</td>
-                <td>Product</td>
-                <td>24/11/2020</td>
-            </tr>
+            @foreach (Job job in jobs)
+            {
+                <tr>
+                    <th scope="row">@job.JobId</th>
+                    <td><a href="all-jobs/@job.JobId">@job.Title</a></td>
+                    <td>@job.JobCategory.ToString()</td>
+                    <td>@job.TimeUploaded.ToString("MM/dd/yyyy")</td>
+                </tr>
+            }
         </tbody>
     </table>
 

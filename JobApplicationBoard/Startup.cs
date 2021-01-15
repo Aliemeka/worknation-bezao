@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using JobApplicationBoard.Data;
 using Microsoft.Extensions.Configuration;
@@ -14,8 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using JobApplicationBoard.Repositories;
 using JobApplicationBoard.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using JobApplicationBoard.Models;
 
 namespace JobApplicationBoard
@@ -97,13 +89,3 @@ namespace JobApplicationBoard
 }
 
 
-
-/*
- * Admin log in and post jobs / edit jobs
- * Applicants visit to apply for jobs. You can not apply for a job and can edit their application
- * Send an email to admin saying someone has applied for the job
- *
- * Project requirements:
- * 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
- *
- */

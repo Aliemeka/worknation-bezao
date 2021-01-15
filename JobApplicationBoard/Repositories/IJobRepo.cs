@@ -12,5 +12,6 @@ namespace JobApplicationBoard.Repositories
         IEnumerable<Job> GetJobs();
         Job AddJob(Job job);
         Job DeleteJob(int Id);
+        IEnumerable<Job> GetJobsByCategory(string JobCategory);
     }
 }
