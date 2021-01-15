@@ -50,5 +50,10 @@ namespace JobApplicationBoard.Repositories
         {
             return _jobList;
         }
+
+        public IEnumerable<Job> GetJobsByCategory(string JobCategory)
+        {
+            return _jobList.Where(c => c.JobCategory == JobCategory);
+        }
     }
 }
