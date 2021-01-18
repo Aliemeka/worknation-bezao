@@ -48,7 +48,7 @@ namespace JobApplicationBoard.Controllers
         [Route("/admin/add-job")]
         public IActionResult CreateJob(Job job)
         {
-            Job newJob = _jobRepo.AddJob(job);
+            Job newJob = _jobRepo. AddJob(job);
             return RedirectToAction("AllJobs");
         }
 

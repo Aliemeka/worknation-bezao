@@ -9,7 +9,7 @@ namespace JobApplicationBoard.Services
     {
         Task SendEmail(string feedback, string recieverEmail, string recieverName);
 
-        Task SendConfirmation(string message, string recieverEmail, string recieverName);
+        Task SendConfirmation(string recieverEmail, string recieverName);
 
     }
 }

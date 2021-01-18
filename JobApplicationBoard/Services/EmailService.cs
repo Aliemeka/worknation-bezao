@@ -8,18 +8,13 @@ namespace JobApplicationBoard.Services
     public class EmailService : IEmailService
     {
 
-
         //Set the message acccording to the feedback. If there is an applicant id it also appends that to the message
         private string SetEmailMessage(string feedback, string applicantId="")
         {
             switch (feedback)
             {
-                case "New Entry":
+                case "Entry":
                     return "There is a new entry in the application " + applicantId;
-
-                case "Recieved":
-                    return @"Your Application has been recieved and is currently being reviewed
-                            Due to the high volume of applications, you may recieve a response within 5 to 10 days";
 
                 case "Accepted":
                     return @"Congratulations! Your Application was accepted. 
@@ -40,8 +35,10 @@ namespace JobApplicationBoard.Services
         }
 
         //Confirmation email sender
-        public Task SendConfirmation(string message, string recieverEmail, string recieverName)
+        public Task SendConfirmation(string recieverEmail, string recieverName)
         {
+            string message = @"Your Application has been recieved and is currently being reviewed.
+                            Due to the high volume of applications, you may recieve a response within 5 to 10 days";
             var mailSender = new SendGridService();
             return mailSender.SendMessage(message, recieverEmail, recieverName);
         }

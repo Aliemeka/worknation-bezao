@@ -8,7 +8,7 @@
 
 <section class="col-11 col-md-10 col-lg-8 mx-auto">
     <a href="/all-jobs/@job.JobId" class="mb-5">Back to details page</a>
-    <form asp-controller="Admin" asp-action="CreateJob" method="post" class="pt-2 pb-2 card px-3 px-sm-4 px-lg-6 my-4">
+    <form asp-controller="Applicant" asp-action="Apply" method="post" class="pt-2 pb-2 card px-3 px-sm-4 px-lg-6 my-4">
         <h3 class="text-primary text-center my-4">Apply as @job.Title</h3>
         <hr/>
         
@@ -51,17 +51,15 @@
                 <span asp-validation-for="LevelofEduction" class="text-danger"></span>
             </div>
             <div class="form-group col-sm-6">
-                <label asp-for="PhotoFile"></label>
-                <input asp-for="PhotoFile" class="form-control" type="file" accept=".jpg, .png"/>
-                <span asp-validation-for="PhotoFile" class="text-danger"></span>
+                <label for="photo">Passport Photo</label>
+                <input name="photo" class="form-control-file" type="file" accept=".jpg, .png"/>
             </div>
         </section>
 
         <section class="row">
             <div class="form-group col-sm-6">
-                <label asp-for="ResumeFile"></label>
-                <input asp-for="ResumeFile" class="form-control" type="file" accept=".pdf" />
-                <span asp-validation-for="ResumeFile" class="text-danger"></span>
+                <label for="resume">Resume</label>
+                <input name="resume" class="form-control-file" type="file" accept=".pdf" />
             </div>
         </section>
         <div class="form-group my-3">
@@ -74,4 +72,5 @@
             </p>
         </div>
     </form>
+        
 </section>

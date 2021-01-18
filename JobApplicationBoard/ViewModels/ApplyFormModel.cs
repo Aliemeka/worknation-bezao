@@ -36,6 +36,7 @@ namespace JobApplicationBoard.ViewModels
         [Display(Name = "Level of Education")]
         public string LevelofEduction { get; set; }
 
+        /*
         [Required(ErrorMessage = "Please upload your photo")]
         [Display(Name ="Passport Photo")]
         public IFormFile PhotoFile { get; set; }
@@ -43,5 +44,6 @@ namespace JobApplicationBoard.ViewModels
         [Required(ErrorMessage = "Please upload your resume")]
         [Display(Name ="Resume")]
         public IFormFile ResumeFile { get; set; }
+        */
     }
 }

@@ -39,11 +39,11 @@ namespace JobApplicationBoard
 
             //Scoped contexts
             services.AddScoped<IApplicantRepo, ApplicantRepo>();
-            services.AddScoped<IJobRepo, JobRepo>(); // Use JobRepo for db and MockJobsRepo for dummy data
+            services.AddScoped<IJobRepo, JobRepo>();
 
 
             services.AddTransient<IEmailService, EmailService>();
-            //services.Configure<AuthMessageSenderOptions>(Configuration);
+            services.AddTransient<IUploadFileService, UploadFileService>();
 
             // Adds support for razor pages and allows compilation while app is running
             services.AddRazorPages().AddRazorRuntimeCompilation();
